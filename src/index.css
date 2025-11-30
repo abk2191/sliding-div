@@ -208,4 +208,10 @@ body {
   .sliding-div h2 {
     font-size: 25px;
   }
+  .sliding-div-two h2,
+  .sliding-div-three h2,
+  .sliding-div-four h2,
+  .sliding-div-five h2 {
+    font-size: 25px;
+  }
 }
