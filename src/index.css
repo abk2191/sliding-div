@@ -127,6 +127,7 @@ body {
   font-family: "Inter", sans-serif;
   font-size: 35px;
   top: 100px;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 1);
 }
 
 .sidebar-close h2 {
@@ -135,6 +136,7 @@ body {
   padding: 0;
   font-family: "Inter", sans-serif;
   font-size: 35px;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6) !important;
 }
 
 .the-button-div {
@@ -202,4 +204,14 @@ body {
 
 .hamburger.open span:nth-child(3) {
   transform: translateY(-12px) rotate(-45deg);
+}
+
+@media (max-width: 768px) {
+  .sidebar-close h2 {
+    font-size: 25px;
+  }
+
+  .sidebar-close h2 {
+    font-size: 25px;
+  }
 }

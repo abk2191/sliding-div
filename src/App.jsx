@@ -21,7 +21,7 @@ function App() {
     if (animateClass === "sidebar-close") {
       const timer = setTimeout(() => {
         setShowSidebar(false); // unmount
-      }, 180); // match CSS duration
+      }, 190); // match CSS duration
 
       return () => clearTimeout(timer);
     }
