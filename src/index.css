@@ -214,4 +214,13 @@ body {
   .sliding-div-five h2 {
     font-size: 25px;
   }
+
+  .the-button-div {
+    height: 90px;
+  }
+
+  .sidebar-open,
+  .sidebar-close {
+    padding-left: 25px;
+  }
 }
