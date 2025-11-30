@@ -222,5 +222,6 @@ body {
   .sidebar-open,
   .sidebar-close {
     padding-left: 25px;
+    margin-top: 90px;
   }
 }
