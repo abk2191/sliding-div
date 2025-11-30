@@ -1,0 +1,207 @@
+.sliding-div {
+  animation: slideOnce 0.6s ease-in-out forwards;
+}
+
+@keyframes slideOnce {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+/******************************************************/
+.sliding-div-two {
+  animation: slideOnce2 0.6s ease-in-out forwards;
+}
+
+@keyframes slideOnce2 {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(8px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+/******************************************************/
+.sliding-div-three {
+  animation: slideOnce3 0.6s ease-in-out forwards;
+}
+
+@keyframes slideOnce3 {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(13px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+/******************************************************/
+.sliding-div-four {
+  animation: slideOnce4 0.6s ease-in-out forwards;
+}
+
+@keyframes slideOnce4 {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(18px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+/******************************************************/
+.sliding-div-five {
+  animation: slideOnce5 0.6s ease-in-out forwards;
+}
+
+@keyframes slideOnce5 {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(23px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.main-container {
+  display: flex;
+  gap: 50px;
+}
+
+.sidebar-open {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 100vh;
+  background-color: navy;
+  margin-top: 100px;
+  animation: slideInLeft; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 0.2s; /* don't forget to set a duration! */
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.55);
+}
+
+.sidebar-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 100vh;
+  background-color: navy;
+  margin-top: 100px;
+  animation: slideOutLeft; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 0.2s; /* don't forget to set a duration! */
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.55);
+}
+
+.sliding-div-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  text-align: left;
+  gap: 45px;
+}
+
+.sidebar-open h2 {
+  color: white;
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 35px;
+  top: 100px;
+}
+
+.sidebar-close h2 {
+  color: white;
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 35px;
+}
+
+.the-button-div {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  z-index: 10000;
+  position: absolute;
+  width: 100%;
+  height: 100px;
+  background-color: navy;
+  padding-left: 20px;
+}
+
+.show-hide-button {
+  height: 60px;
+  width: 200px;
+  cursor: pointer;
+  background-color: blueviolet;
+  border: 4px solid blueviolet;
+  border-radius: 8px;
+  color: white;
+  font-size: 25px;
+  font-family: "Inter", sans-serif;
+}
+
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 100vh;
+  background-color: white;
+}
+
+.hamburger {
+  width: 35px;
+  height: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  background-color: navy;
+  background: none;
+  border: none;
+}
+
+.hamburger span {
+  display: block;
+  height: 4px;
+  width: 100%;
+  background: white;
+  border-radius: 4px;
+  transition: 0.3s ease;
+}
+
+/* When OPEN (becomes X) */
+.hamburger.open span:nth-child(1) {
+  transform: translateY(12px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-12px) rotate(-45deg);
+}
