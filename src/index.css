@@ -1,3 +1,54 @@
+/* Add these sidebar styles to replace the old ones */
+.sidebar {
+  display: flex;
+  width: 300px;
+  height: 100vh;
+  background-color: navy;
+  margin-top: 100px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.55);
+
+  /* Start hidden */
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.sidebar.sidebar-open {
+  opacity: 1;
+  transform: translateX(0);
+  animation: slideInLeft 0.2s ease-out;
+}
+
+.sidebar.sidebar-close {
+  opacity: 0;
+  transform: translateX(-100%);
+  animation: slideOutLeft 0.2s ease-out;
+}
+
+/* Update existing animation keyframes if they don't exist */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+
+/* Keep all the existing sliding-div animations */
 .sliding-div {
   animation: slideOnce 0.6s ease-in-out forwards;
 }
@@ -13,6 +64,7 @@
     transform: translateX(0);
   }
 }
+
 /******************************************************/
 .sliding-div-two {
   animation: slideOnce2 0.6s ease-in-out forwards;
@@ -29,6 +81,7 @@
     transform: translateX(0);
   }
 }
+
 /******************************************************/
 .sliding-div-three {
   animation: slideOnce3 0.6s ease-in-out forwards;
@@ -45,6 +98,7 @@
     transform: translateX(0);
   }
 }
+
 /******************************************************/
 .sliding-div-four {
   animation: slideOnce4 0.6s ease-in-out forwards;
@@ -61,6 +115,7 @@
     transform: translateX(0);
   }
 }
+
 /******************************************************/
 .sliding-div-five {
   animation: slideOnce5 0.6s ease-in-out forwards;
@@ -88,28 +143,6 @@ body {
   gap: 50px;
 }
 
-.sidebar-open {
-  display: flex;
-  width: 300px;
-  height: 100vh;
-  background-color: navy;
-  margin-top: 100px;
-  animation: slideInLeft; /* referring directly to the animation's @keyframe declaration */
-  animation-duration: 0.2s; /* don't forget to set a duration! */
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.55);
-}
-
-.sidebar-close {
-  display: flex;
-  width: 300px;
-  height: 100vh;
-  background-color: navy;
-  margin-top: 100px;
-  animation: slideOutLeft; /* referring directly to the animation's @keyframe declaration */
-  animation-duration: 0.2s; /* don't forget to set a duration! */
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.55);
-}
-
 .sliding-div-container {
   display: flex;
   flex-direction: column;
@@ -120,16 +153,8 @@ body {
   padding-top: 20px;
 }
 
-.sidebar-open h2 {
-  color: white;
-  margin: 0;
-  padding: 0;
-  font-family: "Inter", sans-serif;
-  font-size: 35px;
-  top: 100px;
-}
-
-.sidebar-close h2 {
+/* Update h2 styles for sidebar */
+.sidebar h2 {
   color: white;
   margin: 0;
   padding: 0;
@@ -204,14 +229,14 @@ body {
   transform: translateY(-12px) rotate(-45deg);
 }
 
+/* Remove the old sidebar-open and sidebar-close classes since they're now on .sidebar */
+.sidebar-open,
+.sidebar-close {
+  /* These are now combined into .sidebar class above */
+}
+
 @media (max-width: 768px) {
-  .sliding-div h2 {
-    font-size: 25px;
-  }
-  .sliding-div-two h2,
-  .sliding-div-three h2,
-  .sliding-div-four h2,
-  .sliding-div-five h2 {
+  .sidebar h2 {
     font-size: 25px;
   }
 
@@ -219,8 +244,7 @@ body {
     height: 90px;
   }
 
-  .sidebar-open,
-  .sidebar-close {
+  .sidebar {
     padding-left: 25px;
     margin-top: 90px;
   }

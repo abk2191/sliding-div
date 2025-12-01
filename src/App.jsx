@@ -1,37 +1,47 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import Sidebar from "./Sidebar"; // Assuming you have this component
 
 function App() {
-  const [showSidebar, setShowSidebar] = useState(false);
-  const [animateClass, setAnimateClass] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [shouldRenderSidebar, setShouldRenderSidebar] = useState(false);
+  const sidebarRef = useRef(null);
 
   function toggleSidebar() {
-    if (!showSidebar) {
-      // Mount sidebar, then trigger open animation
-      setShowSidebar(true);
-      setAnimateClass("sidebar-open");
+    if (!isSidebarOpen) {
+      // Opening
+      setShouldRenderSidebar(true);
     } else {
-      // Trigger close animation
-      setAnimateClass("sidebar-close");
+      // Closing - start animation
+      if (sidebarRef.current) {
+        sidebarRef.current.classList.remove("sidebar-open");
+        sidebarRef.current.classList.add("sidebar-close");
+      }
+      // Wait for animation to complete before unmounting
+      setTimeout(() => {
+        setShouldRenderSidebar(false);
+      }, 190); // Match CSS animation duration
     }
-    setIsOpen((prev) => !prev);
+    setIsSidebarOpen(!isSidebarOpen);
   }
 
+  // Trigger animation after mount when opening
   useEffect(() => {
-    if (animateClass === "sidebar-close") {
-      const timer = setTimeout(() => {
-        setShowSidebar(false); // unmount
-      }, 190); // match CSS duration
-
-      return () => clearTimeout(timer);
+    if (shouldRenderSidebar && isSidebarOpen && sidebarRef.current) {
+      // Small delay to ensure DOM is ready
+      setTimeout(() => {
+        if (sidebarRef.current) {
+          sidebarRef.current.classList.add("sidebar-open");
+        }
+      }, 10);
     }
-  }, [animateClass]);
+  }, [shouldRenderSidebar, isSidebarOpen]);
+
   return (
     <>
       <div className="main-container">
         <div className="the-button-div">
           <button
-            className={`hamburger ${isOpen ? "open" : ""}`}
+            className={`hamburger ${isSidebarOpen ? "open" : ""}`}
             onClick={toggleSidebar}
           >
             <span></span>
@@ -39,29 +49,9 @@ function App() {
             <span></span>
           </button>
         </div>
-        {!showSidebar && <div className="placeholder"></div>}
+        {!shouldRenderSidebar && <div className="placeholder"></div>}
 
-        {showSidebar && (
-          <div className={animateClass}>
-            <div className="sliding-div-container">
-              <div className="sliding-div">
-                <h2>HOME</h2>
-              </div>
-              <div className="sliding-div-two">
-                <h2>PRODUCTS</h2>
-              </div>
-              <div className="sliding-div-three">
-                <h2>SERVICES</h2>
-              </div>
-              <div className="sliding-div-four">
-                <h2>CONTACT</h2>
-              </div>
-              <div className="sliding-div-five">
-                <h2>ABOUT US</h2>
-              </div>
-            </div>
-          </div>
-        )}
+        {shouldRenderSidebar && <Sidebar ref={sidebarRef} />}
       </div>
     </>
   );
